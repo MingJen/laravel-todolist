@@ -36,4 +36,18 @@ class TodoListController extends Controller
 
         return redirect()->back();
     }
+
+    public function finishTask(Request $request, $id)
+    {
+        $task = TodoItem::find($id);
+
+        if ($request->user()->id == $task->user_id) {
+
+            $task->is_finish = true;
+            $task->save();
+
+        }
+
+        return redirect()->back();
+    }
 }

@@ -48,4 +48,24 @@ class TodoListTest extends TestCase
              ->see($another_thing);
 
     }
+
+    /**
+     * @test
+     */
+    public function it_can_finish_task()
+    {
+        $user = factory(User::class)->create();
+
+        $do_something = 'do something';
+
+        Auth::login($user);
+
+        $this->visit('/tasks')
+             ->type($do_something, 'title')
+             ->press('Submit')
+             ->see('Finish')
+             ->click('Finish')
+             ->see('Finished');
+
+    }
 }

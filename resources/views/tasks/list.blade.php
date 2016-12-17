@@ -22,6 +22,12 @@
                                 <input type="text" name="modify_title" value="{{ $task->title }}">-{{ $task->owner->name }}
                                 <button class="button" type="submit">Modify</button>
                             </form>
+
+                            @if($task->is_finish)
+                                <label>Finished</label>
+                            @else
+                                <a class="button" href="/finishTask/{{ $task->id }}">Finish</a>
+                            @endif
                         </div>
                     @endforeach
                 </div>
