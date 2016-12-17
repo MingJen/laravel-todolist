@@ -14,9 +14,15 @@
                 </form>
 
                 <div class="panel-body">
-                    @foreach ($tasks as $task)
-                        {{ $task->title }}-{{ $task->owner->name }}
 
+                    @foreach ($tasks as $task)
+                        <div>
+                            <form action="/modifyTask/{{ $task->id }}" method="POST">
+                                {{ csrf_field() }}
+                                <input type="text" name="modify_title" value="{{ $task->title }}">-{{ $task->owner->name }}
+                                <button class="button" type="submit">Modify</button>
+                            </form>
+                        </div>
                     @endforeach
                 </div>
             </div>

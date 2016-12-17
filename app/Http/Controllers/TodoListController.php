@@ -21,6 +21,19 @@ class TodoListController extends Controller
         $request->user()->addTask($request->title);
 
         return redirect()->back();
+    }
 
+    public function modifyTask(Request $request, $id)
+    {
+        $task = TodoItem::find($id);
+
+        if ($request->user()->id == $task->user_id) {
+
+            $task->title = $request->modify_title;
+            $task->save();
+
+        }
+
+        return redirect()->back();
     }
 }

@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/tasks', 'TodoListController@showTasks');
 
     Route::post('/addTask', 'TodoListController@addTask');
+    Route::post('/modifyTask/{id}', 'TodoListController@modifyTask');
 });
 
 Auth::routes();

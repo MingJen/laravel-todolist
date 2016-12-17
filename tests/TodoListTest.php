@@ -26,4 +26,26 @@ class TodoListTest extends TestCase
              ->see('do something')
              ->see('-'.$user->name);
     }
+
+    /**
+     * @test
+     */
+    public function it_can_modify_task_title()
+    {
+        $user = factory(User::class)->create();
+
+        $do_something = 'do something';
+
+        $another_thing = 'another thing';
+
+        Auth::login($user);
+
+        $this->visit('/tasks')
+             ->type($do_something, 'title')
+             ->press('Submit')
+             ->type($another_thing, 'modify_title')
+             ->press('Modify')
+             ->see($another_thing);
+
+    }
 }
