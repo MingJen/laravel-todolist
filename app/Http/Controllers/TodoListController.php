@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\TodoItem;
+use App\User;
 use Illuminate\Http\Request;
 
 class TodoListController extends Controller
@@ -12,5 +13,14 @@ class TodoListController extends Controller
         $tasks = TodoItem::all();
 
         return view('tasks.list', compact('tasks'));
+    }
+
+    public function addTask(Request $request)
+    {
+
+        $request->user()->addTask($request->title);
+
+        return redirect()->back();
+
     }
 }

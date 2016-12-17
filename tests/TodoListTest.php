@@ -18,11 +18,11 @@ class TodoListTest extends TestCase
 
         $do_something = 'do something';
 
-        $user->addTask($do_something);
-
         Auth::login($user);
 
         $this->visit('/tasks')
+             ->type($do_something, 'title')
+             ->press('Submit')
              ->see('do something')
              ->see('-'.$user->name);
     }

@@ -7,8 +7,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Todo List</div>
 
-                <form action="/addTask">
-
+                <form action="/addTask" method="POST">
+                    {{ csrf_field() }}
                     <input type="text" name="title">
                     <button type="submit">Submit</button>
                 </form>
