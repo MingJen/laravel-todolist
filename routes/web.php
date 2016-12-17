@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/tasks', 'TodoListController@showTasks');
+
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
