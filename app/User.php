@@ -28,13 +28,17 @@ class User extends Authenticatable
     ];
 
 
-    public function addTodo($title)
+    public function addTask($title)
     {
         $task = new TodoItem;
 
         $task->title = $title;
 
-        $this->todos()->save($task);
+        $this->tasks()->save($task);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(TodoItem::class);
+    }
 }

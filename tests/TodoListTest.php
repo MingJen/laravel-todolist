@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class TodoListTest extends TestCase
 {
     use DatabaseTransactions;
+
     /**
      * @test
      */
@@ -17,28 +18,12 @@ class TodoListTest extends TestCase
 
         $do_something = 'do something';
 
-        $user->addTodo($do_something);
-
-        $this->seeInDatabase('todo_items', [
-            'user_id' => $user->id,
-            'title'   => $do_something,
-        ]);
-    }
-
-    /**
-     * @test
-     */
-    public function it_can_list_all_task()
-    {
-        $user = factory(User::class)->create();
-
-        $do_something = 'do something';
-
-        $user->addTodo($do_something);
+        $user->addTask($do_something);
 
         Auth::login($user);
 
         $this->visit('/tasks')
-             ->see('do something');
+             ->see('do something')
+             ->see('-'.$user->name);
     }
 }

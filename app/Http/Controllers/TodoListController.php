@@ -11,6 +11,6 @@ class TodoListController extends Controller
     {
         $tasks = TodoItem::all();
 
-        return $tasks;
+        return view('tasks.list', compact('tasks'));
     }
 }
