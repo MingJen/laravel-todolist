@@ -26,4 +26,19 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    public function addTask($title)
+    {
+        $task = new TodoItem;
+
+        $task->title = $title;
+
+        $this->tasks()->save($task);
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(TodoItem::class);
+    }
 }

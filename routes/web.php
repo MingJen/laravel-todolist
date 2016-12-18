@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/tasks', 'TodoListController@showTasks');
+
+    Route::post('/addTask', 'TodoListController@addTask');
+    Route::post('/modifyTask/{id}', 'TodoListController@modifyTask');
+
+    Route::get('/finishTask/{id}', 'TodoListController@finishTask');
+    Route::get('/deleteTask/{id}', 'TodoListController@deleteTask');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
