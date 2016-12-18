@@ -7,6 +7,8 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class TodoListTest extends TestCase
 {
+    private $new_task_btn_name = 'New Task';
+
     use DatabaseTransactions;
 
     /**
@@ -22,7 +24,7 @@ class TodoListTest extends TestCase
 
         $this->visit('/tasks')
              ->type($do_something, 'title')
-             ->press('Submit')
+             ->press($this->new_task_btn_name)
              ->see('do something')
              ->see('-'.$user->name);
     }
@@ -42,7 +44,7 @@ class TodoListTest extends TestCase
 
         $this->visit('/tasks')
              ->type($do_something, 'title')
-             ->press('Submit')
+             ->press($this->new_task_btn_name)
              ->type($another_thing, 'modify_title')
              ->press('Modify')
              ->see($another_thing);
@@ -62,7 +64,7 @@ class TodoListTest extends TestCase
 
         $this->visit('/tasks')
              ->type($do_something, 'title')
-             ->press('Submit')
+             ->press($this->new_task_btn_name)
              ->see('Finish')
              ->click('Finish')
              ->see('Finished');
@@ -82,7 +84,7 @@ class TodoListTest extends TestCase
 
         $this->visit('/tasks')
              ->type($do_something, 'title')
-             ->press('Submit')
+             ->press($this->new_task_btn_name)
              ->see('Delete')
              ->click('Delete')
              ->dontSee('Delete');
@@ -100,7 +102,7 @@ class TodoListTest extends TestCase
 
         $this->visit('/tasks')
              ->type($do_something, 'title')
-             ->press('Submit');
+             ->press($this->new_task_btn_name);
 
         $another_user = factory(User::class)->create();
         Auth::login($another_user);
