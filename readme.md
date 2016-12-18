@@ -15,3 +15,8 @@ in .env file
 
 # How to test
   vender/bin/phpunit
+# To Do
+- [ ] success/error message
+- [ ] finished task readonly
+- [ ] use vue
+- [ ] add tasks to menu
