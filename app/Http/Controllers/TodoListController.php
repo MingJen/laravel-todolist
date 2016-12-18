@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class TodoListController extends Controller
 {
-    public function showTasks()
+    public function showTasks(Request $request)
     {
-        $tasks = TodoItem::all();
+        $tasks = TodoItem::where('user_id', $request->user()->id)->get();
 
         return view('tasks.list', compact('tasks'));
     }

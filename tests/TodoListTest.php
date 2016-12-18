@@ -88,4 +88,26 @@ class TodoListTest extends TestCase
              ->dontSee('Delete');
 
     }
+
+    /**
+     * @test
+     */
+    public function it_only_see_own_task()
+    {
+        $user = factory(User::class)->create();
+        $do_something = 'do something';
+        Auth::login($user);
+
+        $this->visit('/tasks')
+             ->type($do_something, 'title')
+             ->press('Submit');
+
+        $another_user = factory(User::class)->create();
+        Auth::login($another_user);
+
+        $this->visit('/tasks')
+             ->dontSee($do_something);
+
+
+    }
 }
