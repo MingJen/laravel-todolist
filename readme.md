@@ -8,7 +8,9 @@ in .env file
   php artisan migrate
 ## 4. create fake user
   php artisan tinker
+  
   factory(App\User::class)->create();
+  
   user password is "secret"
 
 # How to test
