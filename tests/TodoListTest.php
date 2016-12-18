@@ -68,4 +68,24 @@ class TodoListTest extends TestCase
              ->see('Finished');
 
     }
+
+    /**
+     * @test
+     */
+    public function it_can_delete_task()
+    {
+        $user = factory(User::class)->create();
+
+        $do_something = 'do something';
+
+        Auth::login($user);
+
+        $this->visit('/tasks')
+             ->type($do_something, 'title')
+             ->press('Submit')
+             ->see('Delete')
+             ->click('Delete')
+             ->dontSee('Delete');
+
+    }
 }

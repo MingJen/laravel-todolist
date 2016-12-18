@@ -50,4 +50,17 @@ class TodoListController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteTask(Request $request, $id)
+    {
+        $task = TodoItem::find($id);
+
+        if ($request->user()->id == $task->user_id) {
+
+            $task->delete();
+
+        }
+
+        return redirect()->back();
+    }
 }

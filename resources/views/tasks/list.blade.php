@@ -28,6 +28,8 @@
                             @else
                                 <a class="button" href="/finishTask/{{ $task->id }}">Finish</a>
                             @endif
+
+                            <a href="/deleteTask/{{ $task->id }}" class="button">Delete</a>
                         </div>
                     @endforeach
                 </div>
