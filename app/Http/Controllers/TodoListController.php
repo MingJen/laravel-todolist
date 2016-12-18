@@ -10,7 +10,7 @@ class TodoListController extends Controller
 {
     public function showTasks(Request $request)
     {
-        $tasks = TodoItem::where('user_id', $request->user()->id)->get();
+        $tasks = TodoItem::where('user_id', $request->user()->id)->with('owner')->get();
 
         return view('tasks.list', compact('tasks'));
     }
